@@ -1,0 +1,6 @@
+streamlit
+kokoro-onnx
+onnxruntime
+soundfile
+numpy
+imageio-ffmpeg
