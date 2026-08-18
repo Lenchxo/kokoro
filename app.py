@@ -572,7 +572,7 @@ with st.sidebar:
 # 12. HERO
 # ============================================================
 
-st.markdown("""
+st.markdown
 <div class="hero-container">
 
     <div class="hero-title">
@@ -592,7 +592,7 @@ st.markdown("""
     </div>
 
 </div>
-""", unsafe_allow_html=True)
+ unsafe_allow_html=True
 
 
 # ============================================================
