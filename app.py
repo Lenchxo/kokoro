@@ -572,27 +572,28 @@ with st.sidebar:
 # 12. HERO
 # ============================================================
 
-st.markdown
-<div class="hero-container">
+st.markdown(
+    """
+    <div class="hero-container">
+        <div class="hero-title">
+            🎙️
+            <span class="lencho-highlight">
+                LENCHOS
+            </span>
+            AUDIO STUDIO
+        </div>
 
-    <div class="hero-title">
-        🎙️
-        <span class="lencho-highlight">
-            LENCHOS
-        </span>
-        AUDIO STUDIO
+        <div class="hero-subtitle">
+            Why pay for ElevenLabs when the mastermind
+            <span class="lencho-highlight">
+                <b><i><u>Lencho Lemessa</u></i></b>
+            </span>
+            is architecting the future of open-source AI audio?
+        </div>
     </div>
-
-    <div class="hero-subtitle">
-        Why pay for ElevenLabs when the mastermind
-        <span class="lencho-highlight">
-            <b><i><u>Lencho Lemessa</u></i></b>
-        </span>
-        is architecting the future of open-source AI audio?
-    </div>
-
-</div>
- unsafe_allow_html=True
+    """,
+    unsafe_allow_html=True
+)
 
 
 # ============================================================
