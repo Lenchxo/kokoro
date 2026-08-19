@@ -860,19 +860,58 @@ with st.sidebar:
 
     st.header("🎙️ Voice Settings")
 
-    voice_map = {
-        "🇺🇸 AF Heart": "af_heart",
-        "🇺🇸 AF Bella": "af_bella",
-        "🇺🇸 AF Nicole": "af_nicole",
-        "🇺🇸 AF Sarah": "af_sarah",
-        "🇺🇸 AF Sky": "af_sky",
-        "🇺🇸 AM Adam": "am_adam",
-        "🇺🇸 AM Michael": "am_michael",
-        "🇬🇧 BF Emma": "bf_emma",
-        "🇬🇧 BF Isabella": "bf_isabella",
-        "🇬🇧 BM George": "bm_george",
-        "🇬🇧 BM Fable": "bm_fable",
-    }
+ VOICE_MAP = {
+    "🇺🇸 Beza (American Female - Warm)": "af_heart",
+    "🇺🇸 Birikti (American Female - Soft)": "af_bella",
+    "🇺🇸 Demoze (American Female - Clear)": "af_nicole",
+    "🇺🇸 Lalise (American Female - News)": "af_sarah",
+    "🇺🇸 Efrata (American Female - Casual)": "af_sky",
+    "🇺🇸 Lencho (American Male - Deep)": "am_adam",
+    "🇺🇸 Dego (American Male - Crisp)": "am_michael",
+    "🇬🇧 Bontu (British Female - Professional)": "bf_emma",
+    "🇬🇧 Hawi (British Female - Warm)": "bf_isabella",
+    "🇬🇧 Lalisa (British Male - Expressive)": "bm_george",
+    "🇬🇧 Lemi (British Male - Narration)": "bm_fable"
+}
+# 4. Sidebar Controls & Background Mixer Settings
+with st.sidebar:
+    st.title("⚙️ Studio Settings")
+    st.markdown("Customize your voice engine parameters.")
+    st.divider()
+
+    voice_display_name = st.selectbox(
+        "🎙️ Voice Persona", 
+        options=list(VOICE_MAP.keys()),
+        index=10
+    )
+
+    if st.button("▶️ Preview Voice"):
+        voice_key = VOICE_MAP.get(voice_display_name, 'bm_fable')
+        preview_text = "Hello! This is a quick preview of this voice persona."
+        with st.spinner("Generating preview..."):
+            try:
+                kokoro_engine = get_kokoro_engine()
+                samples, sample_rate = kokoro_engine.create(
+                    preview_text, voice=voice_key, speed=1.0, lang="en-us"
+                )
+                if samples is not None and len(samples) > 0:
+                    temp_preview = tempfile.NamedTemporaryFile(delete=False, suffix=".wav")
+                    sf.write(temp_preview.name, samples, sample_rate)
+                    st.audio(temp_preview.name, format="audio/wav", autoplay=True)
+            except Exception:
+                st.error("Could not generate preview.")
+
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    speed = st.slider("⚡ Speed Rate", min_value=0.5, max_value=2.0, value=1.0, step=0.1)
+
+    st.divider()
+    st.markdown("### 🎵 Background Music Bed")
+    enable_bg = st.checkbox("Enable Ambient Bed", value=False)
+    bg_volume = st.slider("Music Volume", min_value=0.05, max_value=0.40, value=0.15, step=0.05)
+
+    st.divider()
+    st.caption("🚀 **Studio Engine:** Active.")
 
     voice_name = st.selectbox(
         "Narrator",
