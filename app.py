@@ -206,7 +206,7 @@ st.markdown(
     </style>
     <div class="hero-container">
         <div style="font-weight: 800; font-size: 28px; margin-bottom: 8px;">
-            🎙️ <span class="glowing-name">Lenchos</span>  AUDIO STUDIO
+            🎙️ <span class="glowing-name">LENCHOS</span>  AUDIO STUDIO
         </div>
         <div style="font-size: 16px; color: #a1a1aa;">
             Built by <span class="glowing-name">Lencho Lemessa</span> to deliver high-quality voice synthesis.
